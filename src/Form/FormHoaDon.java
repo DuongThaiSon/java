@@ -14,6 +14,7 @@ import DAO.DAOHoaDonChiTiet;
 import DAO.DAOTaiKhoan;
 import DAO.DAOVe;
 import DAO.DBConnection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
@@ -22,7 +23,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class FormHoaDon extends javax.swing.JFrame {
 
-    private ArrayList<HoaDon> listHD;
     DBConnection db = new DBConnection();
     ArrayList<Ve> dsVe;
     DAOVe veDAO = new DAOVe();
@@ -33,6 +33,7 @@ public class FormHoaDon extends javax.swing.JFrame {
     Vector duLieuBang = new Vector();
     DAOHoaDon hoaDonDAO = new DAOHoaDon(db);
     DAOHoaDonChiTiet hoaDonChiTietDAO = new DAOHoaDonChiTiet();
+
     public FormHoaDon(FormTrangChu f) {
         initComponents();
         this.f = f;
@@ -58,8 +59,8 @@ public class FormHoaDon extends javax.swing.JFrame {
         }
         cmbHoTen.setModel(model);
     }
-    
-    public void loadCmb(){
+
+    public void loadCmb() {
         ArrayList<Ve> dsVe = veDAO.getIDVe();
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         for (Ve item : dsVe) {
@@ -71,28 +72,27 @@ public class FormHoaDon extends javax.swing.JFrame {
     private void display() {
         tblHoaDon.setModel(new DefaultTableModel(duLieuBang, tenCot));
     }
-    
-    private void xoa()
-    {
+
+    private void xoa() {
         duLieuBang.clear();
         display();
         txtMaHD.setText("");
         xoaTextBox();
     }
-    
-    private void xoaTextBox()
-    {
+
+    private void xoaTextBox() {
         txtDonGia.setText("");
         txtSoLuong.setText("");
     }
 
-    private void TongTien()
-    {
+    private void TongTien() {
         double tong = 0;
-        for(int i = 0; i < tblHoaDon.getRowCount(); i++)
-            tong += (double)tblHoaDon.getValueAt(i, 3);
+        for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
+            tong += (double) tblHoaDon.getValueAt(i, 3);
+        }
         txtTongTien.setText(tong + "");
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -146,6 +146,13 @@ public class FormHoaDon extends javax.swing.JFrame {
         txtTongTien.setEnabled(false);
 
         jLabel3.setText("Mã hóa đơn");
+
+        txtMaHD.setName(""); // NOI18N
+        txtMaHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaHDActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Mã vé");
 
@@ -260,7 +267,7 @@ public class FormHoaDon extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(250, 250, 250)
                 .addComponent(jLabel8)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(79, 249, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,37 +323,34 @@ public class FormHoaDon extends javax.swing.JFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         String maHD = txtMaHD.getText().trim();
         String maVe = cmb_MaVe.getSelectedItem().toString();
-        for(int i = 0; i < tblHoaDon.getRowCount(); i++)
-            if(tblHoaDon.getValueAt(i, 0).toString().equals(maVe))
-            {
+        for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
+            if (tblHoaDon.getValueAt(i, 0).toString().equals(maVe)) {
                 JOptionPane.showMessageDialog(null, "Mã vé đã tồn tại! Mòi bạn bấm sửa");
                 return;
             }
+        }
         int soLuong = 0;
         double gia = 0;
         try {
             soLuong = Integer.parseInt(txtSoLuong.getText().trim());
             gia = Double.parseDouble(txtDonGia.getText().trim());
-        } catch (Exception ex)
-        {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Số lượng hoặc đơn giá là số!");
             return;
         }
-        if(soLuong <= 0 || gia <= 0)
-        {
+        if (soLuong <= 0 || gia <= 0) {
             JOptionPane.showMessageDialog(null, "Số lượng hoặc đơn giá > 0!");
             return;
         }
         boolean kt = false;
-        for(Ve item : dsVe)
-            if(item.getiDVe().equals(maVe))
-            {
+        for (Ve item : dsVe) {
+            if (item.getiDVe().equals(maVe)) {
                 kt = true;
                 break;
             }
-        
-        if(kt)
-        {
+        }
+
+        if (kt) {
             Vector dong = new Vector();
             dong.add(maVe);
             dong.add(soLuong);
@@ -356,9 +360,9 @@ public class FormHoaDon extends javax.swing.JFrame {
             display();
             TongTien();
             xoaTextBox();
-        }
-        else
+        } else {
             JOptionPane.showMessageDialog(null, "Mã vé không tồn tại!");
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -368,20 +372,17 @@ public class FormHoaDon extends javax.swing.JFrame {
         try {
             soLuong = Integer.parseInt(txtSoLuong.getText().trim());
             gia = Double.parseDouble(txtDonGia.getText().trim());
-        } catch (Exception ex)
-        {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Số lượng hoặc đơn giá là số!");
             return;
         }
-        if(soLuong <= 0 || gia <= 0)
-        {
+        if (soLuong <= 0 || gia <= 0) {
             JOptionPane.showMessageDialog(null, "Số lượng hoặc đơn giá > 0!");
             return;
         }
-        
-        for(int i = 0; i < tblHoaDon.getRowCount(); i++)
-            if(tblHoaDon.getValueAt(i, 0).toString().equals(maVe))
-            {
+
+        for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
+            if (tblHoaDon.getValueAt(i, 0).toString().equals(maVe)) {
                 tblHoaDon.setValueAt(soLuong, i, 1);
                 tblHoaDon.setValueAt(gia, i, 2);
                 tblHoaDon.setValueAt(soLuong * gia, i, 3);
@@ -389,42 +390,49 @@ public class FormHoaDon extends javax.swing.JFrame {
                 xoaTextBox();
                 return;
             }
+        }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         String maVe = cmb_MaVe.getSelectedItem().toString();
-        for(int i = 0; i < tblHoaDon.getRowCount(); i++)
-            if(tblHoaDon.getValueAt(i, 0).toString().equals(maVe))
-            {
+        for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
+            if (tblHoaDon.getValueAt(i, 0).toString().equals(maVe)) {
                 duLieuBang.remove(i);
                 display();
                 TongTien();
                 return;
             }
+        }
         JOptionPane.showMessageDialog(null, "Không có mã vé cần xóa!");
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnLapHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLapHDActionPerformed
         String maHD = txtMaHD.getText().trim();
-        TaiKhoan x = (TaiKhoan)cmbHoTen.getSelectedItem();
+        TaiKhoan x = (TaiKhoan) cmbHoTen.getSelectedItem();
         String idTK = x.getIDTK();
         double tongTien = Double.parseDouble(txtTongTien.getText());
-        if(maHD.equals("") || idTK.equals(""))
-        {
+        if (maHD.equals("") || idTK.equals("")) {
             JOptionPane.showMessageDialog(null, "Bạn chưa nhập đủ thông tin!");
             return;
         }
+        ArrayList<HoaDon> listHD = hoaDonDAO.getHoaDon();
+        for (HoaDon item : listHD) {
+            if (item.toString().equals(maHD)) {
+                JOptionPane.showMessageDialog(null, "Mã hóa đơn đã tồn tại");
+                return;
+            }
+        }
+
         HoaDon hd = new HoaDon(idTK, maHD, tongTien);
         boolean ketQua = hoaDonDAO.Them(hd);
-        for(int i = 0; i < tblHoaDon.getRowCount(); i++)
-        {
-            HoaDonChiTiet hdCT = new HoaDonChiTiet(maHD, tblHoaDon.getValueAt(i, 0).toString(), (int)tblHoaDon.getValueAt(i, 1), (double)tblHoaDon.getValueAt(i, 2));
+        for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
+            HoaDonChiTiet hdCT = new HoaDonChiTiet(maHD, tblHoaDon.getValueAt(i, 0).toString(), (int) tblHoaDon.getValueAt(i, 1), (double) tblHoaDon.getValueAt(i, 2));
             hoaDonChiTietDAO.Them(hdCT);
         }
-        if(ketQua)
-        {
-            JOptionPane.showMessageDialog(null, "Lập hóa đon thành công");
+        if (ketQua) {
+            JOptionPane.showMessageDialog(null, "Lập hóa đơn thành công");
         }
+
         xoa();
     }//GEN-LAST:event_btnLapHDActionPerformed
 
@@ -441,6 +449,10 @@ public class FormHoaDon extends javax.swing.JFrame {
             txtSoLuong.setText(tblHoaDon.getValueAt(dongChon, 2).toString());
         }
     }//GEN-LAST:event_tblHoaDonMouseClicked
+
+    private void txtMaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaHDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaHDActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
