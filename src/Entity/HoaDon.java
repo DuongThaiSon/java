@@ -11,25 +11,16 @@ package Entity;
  */
 public class HoaDon {
 
-    private String iDHoaDon;
     private String iDTK;
+    private String iDHoaDon;
     private double tongTien;
-
-    public HoaDon() {
-    }
+    
+    public HoaDon(){};
 
     public HoaDon(String iDTK, String iDHoaDon, double tongTien) {
-        this.iDHoaDon = iDHoaDon;
         this.iDTK = iDTK;
-        this.tongTien = tongTien;
-    }
-
-    public String getiDHoaDon() {
-        return iDHoaDon;
-    }
-
-    public void setiDHoaDon(String iDHoaDon) {
         this.iDHoaDon = iDHoaDon;
+        this.tongTien = tongTien;
     }
 
     public String getiDTK() {
@@ -40,6 +31,14 @@ public class HoaDon {
         this.iDTK = iDTK;
     }
 
+    public String getiDHoaDon() {
+        return iDHoaDon;
+    }
+
+    public void setiDHoaDon(String iDHoaDon) {
+        this.iDHoaDon = iDHoaDon;
+    }
+
     public double getTongTien() {
         return tongTien;
     }
@@ -48,5 +47,11 @@ public class HoaDon {
         this.tongTien = tongTien;
     }
 
+    @Override
+    public String toString() {
+        return iDHoaDon;
+    }
+
     
+   
 }

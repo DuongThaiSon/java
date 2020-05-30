@@ -57,4 +57,8 @@ public class HoaDonChiTiet {
         this.donGia = donGia;
     }
     
+    @Override
+    public String toString() {
+        return iDHoaDon;
+    }
 }
