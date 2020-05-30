@@ -52,7 +52,7 @@ public class FormRapChieu extends javax.swing.JFrame {
 
         txt_fb = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txt_sophong = new javax.swing.JTextField();
+        txt_soghe = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -61,7 +61,7 @@ public class FormRapChieu extends javax.swing.JFrame {
         txt_marap = new javax.swing.JTextField();
         txt_tenrap = new javax.swing.JTextField();
         txt_diachi = new javax.swing.JTextField();
-        txt_soghe = new javax.swing.JTextField();
+        txt_sophong = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRapChieu = new javax.swing.JTable();
         btn_sua = new javax.swing.JButton();
@@ -79,7 +79,7 @@ public class FormRapChieu extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setText("Tên rạp");
 
-        txt_sophong.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txt_soghe.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setText("Địa chỉ rạp");
@@ -102,7 +102,7 @@ public class FormRapChieu extends javax.swing.JFrame {
 
         txt_diachi.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
-        txt_soghe.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        txt_sophong.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
         tblRapChieu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -196,11 +196,11 @@ public class FormRapChieu extends javax.swing.JFrame {
                                                 .addGap(26, 26, 26)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(txt_fb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txt_sophong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                    .addComponent(txt_soghe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(26, 26, 26)
-                                                .addComponent(txt_soghe, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(txt_sophong, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(35, 35, 35)
                                         .addComponent(btn_sua)
@@ -231,7 +231,7 @@ public class FormRapChieu extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txt_marap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txt_soghe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_sophong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -243,7 +243,7 @@ public class FormRapChieu extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txt_sophong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_soghe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,8 +305,8 @@ public class FormRapChieu extends javax.swing.JFrame {
             txt_tenrap.setText(tblRapChieu.getValueAt(dongChon, 1).toString());
             txt_diachi.setText(tblRapChieu.getValueAt(dongChon, 2).toString());
             txt_fb.setText(tblRapChieu.getValueAt(dongChon, 5).toString());
-            txt_sophong.setText(tblRapChieu.getValueAt(dongChon, 3).toString());
-            txt_soghe.setText(tblRapChieu.getValueAt(dongChon, 4).toString());
+            txt_soghe.setText(tblRapChieu.getValueAt(dongChon, 3).toString());
+            txt_sophong.setText(tblRapChieu.getValueAt(dongChon, 4).toString());
         }
     }//GEN-LAST:event_tblRapChieuMouseClicked
 
