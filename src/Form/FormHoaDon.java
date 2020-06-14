@@ -410,7 +410,8 @@ public class FormHoaDon extends javax.swing.JFrame {
         String maHD = txtMaHD.getText().trim();
         TaiKhoan x = (TaiKhoan) cmbHoTen.getSelectedItem();
         String idTK = x.getIDTK();
-        double tongTien = Double.parseDouble(txtTongTien.getText());
+        double tongTien=0;
+        
         if (maHD.equals("") || idTK.equals("")) {
             JOptionPane.showMessageDialog(null, "Bạn chưa nhập đủ thông tin!");
             return;
@@ -434,6 +435,8 @@ public class FormHoaDon extends javax.swing.JFrame {
         }
 
         xoa();
+        System.out.println(tongTien);
+                
     }//GEN-LAST:event_btnLapHDActionPerformed
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
@@ -444,9 +447,9 @@ public class FormHoaDon extends javax.swing.JFrame {
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
         int dongChon = tblHoaDon.getSelectedRow();
         if (dongChon > -1 && dongChon < tblHoaDon.getRowCount()) {
-            txtMaHD.setText(tblHoaDon.getValueAt(dongChon, 0).toString());
-            txtDonGia.setText(tblHoaDon.getValueAt(dongChon, 3).toString());
-            txtSoLuong.setText(tblHoaDon.getValueAt(dongChon, 2).toString());
+            //txtMaHD.setText(tblHoaDon.getValueAt(dongChon, 0).toString());
+            txtDonGia.setText(tblHoaDon.getValueAt(dongChon, 2).toString()); 
+            txtSoLuong.setText(tblHoaDon.getValueAt(dongChon, 1).toString());
         }
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
